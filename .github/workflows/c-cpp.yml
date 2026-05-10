@@ -25,7 +25,7 @@ jobs:
         run: |
           sudo apt-get update
           sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
-          bash
+          sh
           nix develop
       - name: Configure compiler
         run: |
