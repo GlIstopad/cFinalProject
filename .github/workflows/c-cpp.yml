@@ -25,7 +25,7 @@ jobs:
         run: |
           sudo apt-get update
           sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
-          ./nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+          /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
           nix develop
       - name: Configure compiler
         run: |
@@ -70,3 +70,4 @@ jobs:
               valgrind --leak-check=full --error-exitcode=1 "$EXEC"
             fi
           fi
+          
