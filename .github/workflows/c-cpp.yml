@@ -3,18 +3,14 @@ name: C CI
 on:
   push:
     branches:
-      - main
       - master
-      - develop
   pull_request:
     branches:
-      - main
       - master
-      - develop
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: nixos-latest
 
     strategy:
       fail-fast: false
@@ -28,8 +24,8 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential clang cmake make valgrind
-
+          sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
+          nix develop
       - name: Configure compiler
         run: |
           echo "CC=${{ matrix.compiler }}" >> $GITHUB_ENV
